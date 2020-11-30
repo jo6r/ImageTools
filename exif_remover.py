@@ -58,7 +58,7 @@ def main():
         # processing image
         # TODO save with threading (concurrent.futures.ThreadPoolExecutor)
         img_tools = ImageTools(image)
-        img_tools.save_no_exif()
+        img_tools.save_remove_exif()
 
     print("Execution time: {}".format(datetime.datetime.now() - begin_time))
 
