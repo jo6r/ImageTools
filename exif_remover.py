@@ -37,7 +37,7 @@ def main():
     parser.add_argument('--no-backup', dest='backup', action='store_false', help='disable backup images')
     parser.set_defaults(backup=True)
     arguments = parser.parse_args()
-    print(arguments)
+    # print(arguments)
 
     list_files = FileUtils.get_list_of_files_filter(arguments.source, EXT_FILTER)
     print("Processing folder {}".format(arguments.source))
@@ -56,6 +56,7 @@ def main():
             FileUtils.backup_file(image)
 
         # processing image
+        # TODO save with threading (concurrent.futures.ThreadPoolExecutor)
         img_tools = ImageTools(image)
         img_tools.save_no_exif()
 
