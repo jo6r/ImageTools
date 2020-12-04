@@ -1,3 +1,22 @@
+"""
+Export EXIF metadata from image to json files.
+
+CLI help
+python exif_export.py -h
+
+Exif Export
+
+positional arguments:
+  source       path to source folder
+
+optional arguments:
+  -h, --help   show this help message and exit
+
+Usage:
+python exif_export.py /albums/rivers
+python exif_export.py /albums/rivers
+"""
+
 import argparse
 import datetime
 import json
