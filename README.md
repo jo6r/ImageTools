@@ -20,10 +20,10 @@
 ### Usage
 ```pipenv run exif_remover.py -h ```
 
-## Exif export 
+## Exif exporter 
 - export exif data to json
 ### Usage 
-```pipenv run exif_export.py -h ```
+```pipenv run exif_exporter.py -h ```
 
 ## Exif import? - TODO
 - update/import exif data

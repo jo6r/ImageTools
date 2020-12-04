@@ -2,9 +2,9 @@
 Export EXIF metadata from image to json files.
 
 CLI help
-python exif_export.py -h
+python exif_exporter.py -h
 
-Exif Export
+Exif Exporter
 
 positional arguments:
   source       path to source folder
@@ -13,8 +13,8 @@ optional arguments:
   -h, --help   show this help message and exit
 
 Usage:
-python exif_export.py /albums/rivers
-python exif_export.py /albums/rivers
+python exif_exporter.py /albums/rivers
+python exif_exporter.py /albums/rivers
 """
 
 import argparse
@@ -31,7 +31,7 @@ VERSION = 1.0
 
 def main():
     begin_time = datetime.datetime.now()
-    parser = argparse.ArgumentParser(description='Exif Export {}'.format(VERSION))
+    parser = argparse.ArgumentParser(description='Exif Exporter {}'.format(VERSION))
     parser.add_argument('source', help='path to source folder', type=str)
     arguments = parser.parse_args()
     print(arguments)
