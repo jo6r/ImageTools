@@ -52,3 +52,6 @@ class ImageTools:
         width_size = int((float(self.get_width()) * float(height_percent)))
         new_size = (width_size, height)
         self._img = self._img.resize(new_size, Image.ANTIALIAS)  # replace original image
+
+    def get_exif(self):
+        return self._img.getexif()
