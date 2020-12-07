@@ -18,6 +18,7 @@ python exif_exporter.py /albums/rivers
 """
 
 import argparse
+import concurrent.futures
 import datetime
 import json
 
@@ -26,7 +27,7 @@ from image.ImageTools import ImageTools
 from utils.FileUtils import FileUtils
 
 EXT_FILTER = [".jpg", ".png"]
-VERSION = 1.0
+VERSION = 1.1
 
 
 def main():
@@ -34,31 +35,39 @@ def main():
     parser = argparse.ArgumentParser(description='Exif Exporter {}'.format(VERSION))
     parser.add_argument('source', help='path to source folder', type=str)
     arguments = parser.parse_args()
-    print(arguments)
+    # print(arguments)
 
     list_files = FileUtils.get_list_of_files_filter(arguments.source, EXT_FILTER)
     print("Processing folder {}".format(arguments.source))
-    print("Input files: {}".format(len(list_files)))
+    print("Input file: {}".format(len(list_files)))
 
-    for image in list_files:
-        if not FileUtils.file_exists(image):
-            print("ERROR: File Not Found. {}".format(image))
-            break  # end of loop
-        print(image)
-        try:
-            exif: ExifTools = ExifTools.from_exif(ImageTools(image).get_exif())
+    # Default value of max_workers is changed to min(32, os.cpu_count() + 4).
+    # This default value preserves at least 5 workers for I/O bound tasks
+    with concurrent.futures.ThreadPoolExecutor(max_workers=None) as executor:
+        futures = []
+        for file in list_files:
+            futures.append(executor.submit(json_export, file))
 
-            if exif:
-                filename = image + ".exif.json"
-                with open(filename, "w") as f:
-                    f.write(json.dumps(exif.__dict__))
-        except NoExifError as e:
-            print(str(e))
+        for future in concurrent.futures.as_completed(futures):
+            # print("{} Task complete {}".format(file, future.result()))
+            pass
 
     print("Execution time: {}".format(datetime.datetime.now() - begin_time))
 
 
+def json_export(image) -> bool:
+    try:
+        exif: ExifTools = ExifTools.from_exif(ImageTools(image).get_exif())
+
+        if exif:
+            filename = image + ".exif.json"
+            with open(filename, "w") as f:
+                f.write(json.dumps(exif.__dict__))
+        return True
+    except NoExifError as e:
+        print("{} {}".format(image, str(e)))
+        return False
+
+
 if __name__ == '__main__':
     main()
-
-

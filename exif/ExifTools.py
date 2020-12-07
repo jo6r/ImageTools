@@ -24,7 +24,8 @@ class ExifTools:
             try:
                 self._exif[TAGS[k]] = self._decode(v)
             except KeyError as e:
-                print("Skip labeling, {}".format(str(e)))
+                # print("Skip labeling, {}".format(str(e)))
+                pass
 
     def _label_gps_tags(self):
         try:
@@ -34,11 +35,12 @@ class ExifTools:
                 try:
                     out[GPSTAGS[k]] = self._decode(v)
                 except KeyError as e:
-                    print("Skip GPS labeling, {}".format(str(e)))
+                    # print("Skip GPS labeling, {}".format(str(e)))
+                    pass
 
             self._exif["GPSInfo"] = out
         except KeyError as e:
-            print("Image doesn't gave GPSInfo metadata. {}".format(str(e)))
+            # print("Image doesn't gave GPSInfo metadata. {}".format(str(e)))
             self._exif["GPSInfo"] = None
 
     def get_gps_info(self):
