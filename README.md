@@ -10,7 +10,7 @@
 - batch image processing
 - backup images
 ### Usage
-```pipenv run image_resizer.py -h ```
+```pipenv run python image_resizer.py -h ```
 
 ## Exif remover
 - remove exif data
@@ -18,12 +18,12 @@
 - backup images
 
 ### Usage
-```pipenv run exif_remover.py -h ```
+```pipenv run python exif_remover.py -h ```
 
 ## Exif exporter 
 - export exif data to json
 ### Usage 
-```pipenv run exif_exporter.py -h ```
+```pipenv run python exif_exporter.py -h ```
 
 ## Exif import? - TODO
 - update/import exif data
