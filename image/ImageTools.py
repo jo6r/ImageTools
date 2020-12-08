@@ -29,7 +29,7 @@ class ImageTools:
     def save(self):
         try:
             self._img.save(self.filepath)
-            print("Done: {}".format(self.filepath))
+            # print("Done: {}".format(self.filepath))
         except Exception as e:
             print("ERROR during saving image. {}".format(str(e)))
 

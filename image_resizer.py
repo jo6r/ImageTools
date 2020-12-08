@@ -46,17 +46,16 @@ def main():
     if arguments.max < LIMITS[0] or arguments.max > LIMITS[1]:
         sys.exit("Argument 'max' is out of limits")
 
-    list_images = FileUtils.get_list_of_files_filter(arguments.source, EXT_FILTER)
+    images = FileUtils.get_list_of_files_filter(arguments.source, EXT_FILTER)
     print("Processing folder {}".format(arguments.source))
-    print("Input files: {}".format(len(list_images)))
+    print("Input files: {}".format(len(images)))
     if arguments.backup:
         print("Backup images is enabled")
     else:
         print("Backup images is disabled")
 
-    # counter
-    processed_img = 0
-    for image in list_images:
+    processed_img = 0  # counter
+    for image in images:
         if not FileUtils.file_exists(image):
             print("ERROR: File Not Found. {}".format(image))
             break  # end of loop
