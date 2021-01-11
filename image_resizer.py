@@ -16,8 +16,8 @@ optional arguments:
   --no-backup  disable backup images
 
 Usage:
-python image_resizer.py /albums/flowers 2560 --backup
-python image_resizer.py /albums/flowers 2560 --no-backup
+pipenv run python image_resizer.py /albums/flowers 2560 --backup
+pipenv run python image_resizer.py /albums/flowers 2560 --no-backup
 """
 
 import argparse

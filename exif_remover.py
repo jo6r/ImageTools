@@ -16,8 +16,8 @@ optional arguments:
 
 
 Usage:
-python exif_remover.py /albums/rivers --backup
-python exif_remover.py /albums/rivers --no-backup
+pipenv run python exif_remover.py /albums/rivers --backup
+pipenv run python exif_remover.py /albums/rivers --no-backup
 """
 
 import argparse

@@ -13,8 +13,8 @@ optional arguments:
   -h, --help   show this help message and exit
 
 Usage:
-python exif_exporter.py /albums/rivers
-python exif_exporter.py /albums/rivers
+pipenv run python exif_exporter.py /albums/rivers
+pipenv run python exif_exporter.py /albums/rivers
 """
 
 import argparse
